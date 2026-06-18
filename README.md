@@ -4,35 +4,39 @@ A Python security automation tool that checks HTTP security headers for websites
 
 ## Features
 
-- Check HTTP security headers
-- Detect missing security protections
-- Calculate a security score
-- Assign a risk level
-- Analyze a single URL
-- Analyze multiple URLs from a file
-- Generate CSV reports
-- Generate TXT summary reports
-- Generate JSON reports
-- Generate security findings
-- Generate NDJSON events for SIEM-style ingestion
-- Provide recommendations for missing headers
-- Run from the command line
+* Check HTTP security headers
+* Detect missing security protections
+* Calculate a security score
+* Assign a risk level
+* Analyze a single URL
+* Analyze multiple URLs from a file
+* Generate CSV reports
+* Generate TXT summary reports
+* Generate JSON reports
+* Generate security findings
+* Generate NDJSON events for SIEM-style ingestion
+* Provide recommendations for missing headers
+* Run from the command line
+* Includes GitHub Actions workflow
 
 ## Security Headers Checked
 
 The tool checks for the following HTTP security headers:
 
-- Strict-Transport-Security
-- Content-Security-Policy
-- X-Frame-Options
-- X-Content-Type-Options
-- Referrer-Policy
-- Permissions-Policy
+* Strict-Transport-Security
+* Content-Security-Policy
+* X-Frame-Options
+* X-Content-Type-Options
+* Referrer-Policy
+* Permissions-Policy
 
 ## Project Structure
 
 ```text
 python-security-headers-checker/
+├── .github/
+│   └── workflows/
+│       └── python-check.yml
 ├── src/
 │   └── headers_checker.py
 ├── sample_urls/
@@ -116,12 +120,12 @@ Used to represent security findings in a structured format.
 
 Each finding includes:
 
-- Finding ID
-- Finding name
-- Severity
-- Target URL
-- Details
-- Recommendation
+* Finding ID
+* Finding name
+* Severity
+* Target URL
+* Details
+* Recommendation
 
 ### NDJSON Events
 
@@ -211,49 +215,68 @@ Several headers missing → High
 
 ## Header Recommendations
 
-The tool provides recommendations for missing headers, for example:
+The tool provides recommendations for missing headers.
 
-| Header | Recommendation |
-|---|---|
-| Strict-Transport-Security | Enable HSTS to force HTTPS connections. |
-| Content-Security-Policy | Implement a restrictive Content-Security-Policy to reduce XSS risk. |
-| X-Frame-Options | Set X-Frame-Options to DENY or SAMEORIGIN to reduce clickjacking risk. |
-| X-Content-Type-Options | Set X-Content-Type-Options to nosniff. |
-| Referrer-Policy | Set a strict Referrer-Policy such as strict-origin-when-cross-origin. |
-| Permissions-Policy | Restrict browser features such as camera, microphone, and geolocation. |
+| Header                    | Recommendation                                                         |
+| ------------------------- | ---------------------------------------------------------------------- |
+| Strict-Transport-Security | Enable HSTS to force HTTPS connections.                                |
+| Content-Security-Policy   | Implement a restrictive Content-Security-Policy to reduce XSS risk.    |
+| X-Frame-Options           | Set X-Frame-Options to DENY or SAMEORIGIN to reduce clickjacking risk. |
+| X-Content-Type-Options    | Set X-Content-Type-Options to nosniff.                                 |
+| Referrer-Policy           | Set a strict Referrer-Policy such as strict-origin-when-cross-origin.  |
+| Permissions-Policy        | Restrict browser features such as camera, microphone, and geolocation. |
 
 ## SOC / SIEM Outputs
 
 This project generates multiple output formats commonly used in security operations:
 
-- CSV for spreadsheet-based review
-- TXT for human-readable summaries
-- JSON for automation, dashboards, and APIs
-- `findings.json` for structured security assessment findings
-- `events.ndjson` for SIEM/log ingestion workflows
+* CSV for spreadsheet-based review
+* TXT for human-readable summaries
+* JSON for automation, dashboards, and APIs
+* `findings.json` for structured security assessment findings
+* `events.ndjson` for SIEM/log ingestion workflows
+
+## GitHub Actions
+
+This project includes a GitHub Actions workflow that runs automated checks on every push and pull request.
+
+The workflow:
+
+* Installs project dependencies
+* Checks Python syntax
+* Runs a single URL scan
+* Runs a URL list scan
+* Verifies that reports can be generated successfully
+
+Workflow file:
+
+```text
+.github/workflows/python-check.yml
+```
 
 ## Requirements
 
 This project uses:
 
-- Python 3
-- requests
+* Python 3
+* requests
 
 ## Skills Demonstrated
 
-- Python automation
-- HTTP requests
-- Web security basics
-- HTTP security header analysis
-- CSV report generation
-- TXT summary generation
-- JSON report generation
-- NDJSON event generation
-- Security finding structure
-- Command-line arguments
-- Risk scoring
-- SOC/SIEM-friendly output formats
-- IT/Security automation workflow
+* Python automation
+* HTTP requests
+* Web security basics
+* HTTP security header analysis
+* CSV report generation
+* TXT summary generation
+* JSON report generation
+* NDJSON event generation
+* Security finding structure
+* Command-line arguments
+* Risk scoring
+* SOC/SIEM-friendly output formats
+* GitHub Actions
+* IT/Security automation workflow
 
 ## Example Resume Description
 
